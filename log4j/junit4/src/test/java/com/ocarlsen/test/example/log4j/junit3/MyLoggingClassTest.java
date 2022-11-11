@@ -5,21 +5,21 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 
 import org.apache.log4j.Logger;
+import org.junit.Test;
 import org.mockito.InOrder;
 
 import com.ocarlsen.test.example.log4j.MyLoggingClass;
-
-import junit.framework.TestCase;
 
 import static org.mockito.Mockito.inOrder;
 import static org.mockito.Mockito.mock;
 
 /**
- * Example unit test for {@link com.ocarlsen.test.example.log4j.MyLoggingClass} with JUnit 3.
+ * Example unit test for {@link com.ocarlsen.test.example.log4j.MyLoggingClass} with JUnit 4.
  */
-public class MyLoggingClassTest extends TestCase {
+public class MyLoggingClassTest {
 
-    public void testLoggingMethod() throws Exception {
+    @Test
+    public void loggingMethod() throws Exception {
 
         // Prepare mocks
         final Logger logger = mockLogger();

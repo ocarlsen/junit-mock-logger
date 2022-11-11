@@ -18,6 +18,7 @@
     <modules>
         <module>source</module>
         <module>junit3</module>
+        <module>junit4</module>
     </modules>
 
 </project>
