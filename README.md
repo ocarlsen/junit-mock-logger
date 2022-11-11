@@ -1,2 +1,2 @@
-# junit-mock-logger
-Examples of mocking different Loggers with various permutations of Mockito/JUnit.
+# mock-logger
+Examples of testing different Loggers, with various permutations of frameworks.
