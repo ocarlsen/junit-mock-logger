@@ -1,7 +1,6 @@
 package com.ocarlsen.test.example.log4j.junit3;
 
 import com.ocarlsen.test.example.log4j.MyLoggingClass;
-import junit.framework.TestCase;
 import junit.framework.TestSuite;
 import org.apache.log4j.Logger;
 import org.mockito.InOrder;
@@ -23,10 +22,10 @@ import static org.powermock.api.mockito.PowerMockito.verifyStatic;
  */
 @PrepareForTest(Logger.class)
 @PowerMockIgnore({"jdk.internal.*"})
-public class MyLoggingClass_PowerMockTest extends TestCase {
+public class MyLoggingClass_PowerMockTest extends MyLoggingClassTestBase {
 
     /**
-     * Use this {@link TestSuite} as a stand-in for JUnit 4 RunWith(PowerMockRunner).
+     * Use this {@link TestSuite} to run with PowerMock in JUnit 3.
      */
     @SuppressWarnings({"deprecation", "unchecked"})
     public static TestSuite suite() throws Exception {
@@ -34,28 +33,11 @@ public class MyLoggingClass_PowerMockTest extends TestCase {
         return new PowerMockSuite("Unit tests for " + MyLoggingClass.class.getSimpleName(), testCases);
     }
 
-    public void testLoggingMethod() {
+    @Override
+    protected void verifyLogger(final Logger logger) {
 
-        // Prepare mocks
-        final Logger logger = mockLogger();
-
-        // Given
-        MyLoggingClass classToTest = new MyLoggingClass();
-
-        // When
-        classToTest.loggingMethod();
-
-        // Then
-        // (Asserts on other logic.)
-
-        // Verify mocks
-        final InOrder inOrder = inOrder(logger);
-        inOrder.verify(logger).trace("this is a trace message");
-        inOrder.verify(logger).debug("this is a debug message");
-        inOrder.verify(logger).info("this is an info message");
-        inOrder.verify(logger).warn("this is a warn message");
-        inOrder.verify(logger).error("this is an error message");
-        inOrder.verifyNoMoreInteractions();
+        // Usual steps.
+        super.verifyLogger(logger);
 
         // Also verify static mocking.
         // https://github.com/powermock/powermock/wiki/Mockito#how-to-verify-behavior
@@ -67,7 +49,8 @@ public class MyLoggingClass_PowerMockTest extends TestCase {
 
     }
 
-    private static Logger mockLogger() {
+    @Override
+    protected Logger prepareLogger() {
         final Logger logger = mock(Logger.class);
 
         mockStatic(Logger.class);
