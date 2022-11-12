@@ -1,6 +1,6 @@
 package com.ocarlsen.test.example.log4j.junit3;
 
-import com.ocarlsen.test.example.log4j.MyLoggingClass;
+import com.ocarlsen.test.example.log4j.MyStaticLoggingClass;
 import junit.framework.TestCase;
 import org.apache.log4j.Logger;
 import org.mockito.InOrder;
@@ -8,7 +8,7 @@ import org.mockito.InOrder;
 import static org.mockito.Mockito.inOrder;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 
-public abstract class MyLoggingClassTestBase extends TestCase {
+public abstract class MyStaticLoggingClassTestBase extends TestCase {
 
     public void testLoggingMethod() throws Exception {
 
@@ -16,7 +16,7 @@ public abstract class MyLoggingClassTestBase extends TestCase {
         final Logger logger = prepareLogger();
 
         // Given
-        MyLoggingClass testInstance = new MyLoggingClass();
+        MyStaticLoggingClass testInstance = new MyStaticLoggingClass();
 
         // When
         testInstance.loggingMethod();
@@ -35,7 +35,7 @@ public abstract class MyLoggingClassTestBase extends TestCase {
         final Logger logger = prepareLogger();
 
         // Given
-        MyLoggingClass testInstance = new MyLoggingClass();
+        MyStaticLoggingClass testInstance = new MyStaticLoggingClass();
         final Exception ex = new Exception("fake it");
 
         // When

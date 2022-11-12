@@ -1,6 +1,6 @@
 package com.ocarlsen.test.example.log4j.junit3;
 
-import com.ocarlsen.test.example.log4j.MyLoggingClass;
+import com.ocarlsen.test.example.log4j.MyStaticLoggingClass;
 import org.apache.log4j.Logger;
 
 import java.lang.reflect.Field;
@@ -10,18 +10,18 @@ import java.lang.reflect.Modifier;
 import static org.mockito.Mockito.mock;
 
 /**
- * Example unit test for {@link com.ocarlsen.test.example.log4j.MyLoggingClass} with JUnit 3.
+ * Example unit test for {@link MyStaticLoggingClass} with JUnit 3.
  * It uses reflection to mock out the {@link Logger}.
  */
 @SuppressWarnings("NewClassNamingConvention")
-public class MyLoggingClass_ReflectionTest extends MyLoggingClassTestBase {
+public class MyStaticLoggingClass_ReflectionTest extends MyStaticLoggingClassTestBase {
 
     @SuppressWarnings("ConstantConditions")
     @Override
     protected Logger prepareLogger() throws Exception {
 
         // Field is static
-        Class<MyLoggingClass> clazz = MyLoggingClass.class;
+        Class<MyStaticLoggingClass> clazz = MyStaticLoggingClass.class;
         final Field loggerField = clazz.getDeclaredField("LOGGER");
 
         // Field is private

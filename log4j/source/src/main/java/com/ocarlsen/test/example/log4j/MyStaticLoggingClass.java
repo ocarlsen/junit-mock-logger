@@ -5,13 +5,13 @@ import org.apache.log4j.Logger;
 /**
  * A class that uses a private static final {@link Logger}.
  */
-public class MyLoggingClass {
+public class MyStaticLoggingClass {
 
     // TODO: non-static version
-    private static final Logger LOGGER = Logger.getLogger(MyLoggingClass.class);
+    private static final Logger LOGGER = Logger.getLogger(MyStaticLoggingClass.class);
 
     public static void main(String[] args) throws Exception {
-        new MyLoggingClass().loggingMethod();
+        new MyStaticLoggingClass().loggingMethod();
     }
 
     /**

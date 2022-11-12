@@ -8,15 +8,15 @@ import org.apache.log4j.Logger;
 import org.junit.Test;
 import org.mockito.InOrder;
 
-import com.ocarlsen.test.example.log4j.MyLoggingClass;
+import com.ocarlsen.test.example.log4j.MyStaticLoggingClass;
 
 import static org.mockito.Mockito.inOrder;
 import static org.mockito.Mockito.mock;
 
 /**
- * Example unit test for {@link com.ocarlsen.test.example.log4j.MyLoggingClass} with JUnit 4.
+ * Example unit test for {@link MyStaticLoggingClass} with JUnit 4.
  */
-public class MyLoggingClassTest {
+public class MyStaticLoggingClassTest {
 
     @Test
     public void loggingMethod() throws Exception {
@@ -25,7 +25,7 @@ public class MyLoggingClassTest {
         final Logger logger = mockLogger();
 
         // Given
-        MyLoggingClass classToTest = new MyLoggingClass();
+        MyStaticLoggingClass classToTest = new MyStaticLoggingClass();
 
         // When
         classToTest.loggingMethod();
@@ -47,7 +47,7 @@ public class MyLoggingClassTest {
     private static Logger mockLogger() throws Exception {
 
         // Field is static
-        Class<MyLoggingClass> clazz = MyLoggingClass.class;
+        Class<MyStaticLoggingClass> clazz = MyStaticLoggingClass.class;
         final Field loggerField = clazz.getDeclaredField("LOGGER");
 
         // Field is private

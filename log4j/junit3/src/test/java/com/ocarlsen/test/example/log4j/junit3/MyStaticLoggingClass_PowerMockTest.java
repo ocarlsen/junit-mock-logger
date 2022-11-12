@@ -1,6 +1,6 @@
 package com.ocarlsen.test.example.log4j.junit3;
 
-import com.ocarlsen.test.example.log4j.MyLoggingClass;
+import com.ocarlsen.test.example.log4j.MyStaticLoggingClass;
 import junit.framework.TestSuite;
 import org.apache.log4j.Logger;
 import org.mockito.internal.verification.NoMoreInteractions;
@@ -16,17 +16,17 @@ import static org.powermock.api.mockito.PowerMockito.mockStatic;
 import static org.powermock.api.mockito.PowerMockito.verifyStatic;
 
 /**
- * Example unit test for {@link MyLoggingClass} with JUnit 3.
+ * Example unit test for {@link MyStaticLoggingClass} with JUnit 3.
  * It uses PowerMock 1.x to mock out the {@link Logger}.
  */
 @PrepareForTest(Logger.class)
 @PowerMockIgnore({"jdk.internal.*"})
-public class MyLoggingClass_PowerMockTest extends MyLoggingClassTestBase {
+public class MyStaticLoggingClass_PowerMockTest extends MyStaticLoggingClassTestBase {
 
     /**
-     * These hacks are necessary because {@link MyLoggingClass#LOGGER} is static.
+     * These hacks are necessary because {@link MyStaticLoggingClass#LOGGER} is static.
      * The {@link Logger#getLogger(Class)} method that we are mocking is only called once.
-     * TODO: Make {@link MyLoggingClass#LOGGER} non static
+     * TODO: Make {@link MyStaticLoggingClass#LOGGER} non static
      */
     @SuppressWarnings("JavadocReference")
     private static Logger logger;
@@ -37,8 +37,8 @@ public class MyLoggingClass_PowerMockTest extends MyLoggingClassTestBase {
      */
     @SuppressWarnings({"deprecation", "unchecked"})
     public static TestSuite suite() throws Exception {
-        final Class<MyLoggingClass_PowerMockTest> testCases = MyLoggingClass_PowerMockTest.class;
-        return new PowerMockSuite("Unit tests for " + MyLoggingClass.class.getSimpleName(), testCases);
+        final Class<MyStaticLoggingClass_PowerMockTest> testCases = MyStaticLoggingClass_PowerMockTest.class;
+        return new PowerMockSuite("Unit tests for " + MyStaticLoggingClass.class.getSimpleName(), testCases);
     }
 
     @Override
@@ -76,7 +76,7 @@ public class MyLoggingClass_PowerMockTest extends MyLoggingClassTestBase {
             logger = mock(Logger.class);
 
             mockStatic(Logger.class);
-            when(Logger.getLogger(MyLoggingClass.class)).thenReturn(logger);
+            when(Logger.getLogger(MyStaticLoggingClass.class)).thenReturn(logger);
         } else {
             reset(logger);
         }
@@ -89,7 +89,7 @@ public class MyLoggingClass_PowerMockTest extends MyLoggingClassTestBase {
         // Also verify static mocking.
         // https://github.com/powermock/powermock/wiki/Mockito#how-to-verify-behavior
         verifyStatic(Logger.class, times(1));
-        Logger.getLogger(MyLoggingClass.class);
+        Logger.getLogger(MyStaticLoggingClass.class);
 
         verifyStatic(Logger.class, new NoMoreInteractions());
         Logger.getLogger(Class.class);
