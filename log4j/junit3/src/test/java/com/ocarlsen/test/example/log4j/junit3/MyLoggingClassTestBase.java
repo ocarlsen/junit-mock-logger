@@ -16,16 +16,36 @@ public abstract class MyLoggingClassTestBase extends TestCase {
         final Logger logger = prepareLogger();
 
         // Given
-        MyLoggingClass classToTest = new MyLoggingClass();
+        MyLoggingClass testInstance = new MyLoggingClass();
 
         // When
-        classToTest.loggingMethod();
+        testInstance.loggingMethod();
 
         // Then
         // (Asserts on other logic.)
 
         // Verify mocks
         verifyLogger(logger);
+        verifyNoMoreInteractions(logger);
+    }
+
+    public void testLoggingMethodWithException() throws Exception {
+
+        // Prepare mocks
+        final Logger logger = prepareLogger();
+
+        // Given
+        MyLoggingClass testInstance = new MyLoggingClass();
+        final Exception ex = new Exception("fake it");
+
+        // When
+        testInstance.loggingMethodWithException(ex);
+
+        // Then
+        // (Asserts on other logic.)
+
+        // Verify mocks
+        verifyLogger(logger, ex);
         verifyNoMoreInteractions(logger);
     }
 
@@ -39,6 +59,15 @@ public abstract class MyLoggingClassTestBase extends TestCase {
         inOrder.verifyNoMoreInteractions();
     }
 
-    protected abstract Logger prepareLogger() throws Exception;
+    protected void verifyLogger(final Logger logger, final Exception ex) {
+        final InOrder inOrder = inOrder(logger);
+        inOrder.verify(logger).trace("this is a trace message", ex);
+        inOrder.verify(logger).debug("this is a debug message", ex);
+        inOrder.verify(logger).info("this is an info message", ex);
+        inOrder.verify(logger).warn("this is a warn message", ex);
+        inOrder.verify(logger).error("this is an error message", ex);
+        inOrder.verifyNoMoreInteractions();
+    }
 
+    protected abstract Logger prepareLogger() throws Exception;
 }
