@@ -5,7 +5,7 @@ import org.apache.log4j.Logger;
 /**
  * A class that uses a private <b>static</b> final {@link Logger}.
  */
-public class MyStaticLoggingClass {
+public class MyStaticLoggingClass extends AbstractLoggingClass {
 
     public static void main(String[] args) {
         new MyStaticLoggingClass().loggingMethod();
