@@ -1,6 +1,6 @@
 package com.ocarlsen.test.example.log4j.junit3;
 
-import com.ocarlsen.test.example.log4j.MyStaticLoggingClass;
+import com.ocarlsen.test.example.log4j.MyInstanceLoggingClass;
 import org.apache.log4j.Logger;
 
 import java.lang.reflect.Field;
@@ -10,32 +10,25 @@ import java.lang.reflect.Modifier;
 import static org.mockito.Mockito.mock;
 
 /**
- * Example unit test for {@link MyStaticLoggingClass} with JUnit 3.
+ * Example unit test for {@link MyInstanceLoggingClass} with JUnit 3.
  * It uses reflection to mock out the {@link Logger}.
  */
 @SuppressWarnings("NewClassNamingConvention")
-public class MyStaticLoggingClass_ReflectionTest extends MyStaticLoggingClassTestBase {
+public class MyInstanceLoggingClass_ReflectionTest extends MyInstanceLoggingClassTestBase {
 
     @Override
     protected Logger getMockLogger() {
         return mock(Logger.class);
     }
 
-    @Override
-    protected void prepareAfterInstance(final Logger logger,
-                                        final Object testInstance,
-                                        final String loggerFieldName) {
-        // No-op because logger field is Class scope.
-    }
-
     @SuppressWarnings("ConstantConditions")
     @Override
-    protected void prepareBeforeInstance(final Logger logger,
-                                         final String loggingClassName,  // Need to provide as String so it does not get loaded before we can mock it.
-                                         final String loggerFieldName) throws Exception {
+    protected void prepareAfterInstance(final Logger logger,
+                                        final Object loggingInstance,   // Need to provide as Object so it does not get loaded before we can mock it.
+                                        final String loggingFieldName) throws Exception {
 
-        Class<?> clazz = getClass().getClassLoader().loadClass(loggingClassName);
-        final Field loggerField = clazz.getDeclaredField(loggerFieldName);
+        Class<?> clazz = loggingInstance.getClass();
+        final Field loggerField = clazz.getDeclaredField(loggingFieldName);
 
         // Field is private
         loggerField.setAccessible(true);
@@ -54,7 +47,14 @@ public class MyStaticLoggingClass_ReflectionTest extends MyStaticLoggingClassTes
         modifiersField.setAccessible(true);
         modifiersField.setInt(loggerField, loggerField.getModifiers() & ~Modifier.FINAL);
 
-        // Set mock logger on Class field
-        loggerField.set(null, logger);
+        // Set mock logger on Instance field
+        loggerField.set(loggingInstance, logger);
+    }
+
+    @Override
+    protected void prepareBeforeInstance(final Logger logger,
+                                         final String loggingClassName,  // Need to provide as String so it does not get loaded before we can mock it.
+                                         final String loggerFieldName) {
+        // No-op because logger field is Instance scope.
     }
 }

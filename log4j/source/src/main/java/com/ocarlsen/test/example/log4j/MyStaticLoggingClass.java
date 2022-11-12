@@ -3,16 +3,15 @@ package com.ocarlsen.test.example.log4j;
 import org.apache.log4j.Logger;
 
 /**
- * A class that uses a private static final {@link Logger}.
+ * A class that uses a private <b>static</b> final {@link Logger}.
  */
 public class MyStaticLoggingClass {
 
-    // TODO: non-static version
-    private static final Logger LOGGER = Logger.getLogger(MyStaticLoggingClass.class);
-
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
         new MyStaticLoggingClass().loggingMethod();
     }
+
+    private static final Logger LOGGER = Logger.getLogger(MyStaticLoggingClass.class);
 
     /**
      * <p>This method tests a few {@link Logger} methods.</p>

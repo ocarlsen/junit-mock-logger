@@ -1,6 +1,6 @@
 package com.ocarlsen.test.example.log4j.junit3;
 
-import com.ocarlsen.test.example.log4j.MyStaticLoggingClass;
+import com.ocarlsen.test.example.log4j.MyInstanceLoggingClass;
 import junit.framework.TestCase;
 import org.apache.log4j.Logger;
 import org.mockito.InOrder;
@@ -8,10 +8,10 @@ import org.mockito.InOrder;
 import static org.mockito.Mockito.inOrder;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 
-public abstract class MyStaticLoggingClassTestBase extends TestCase {
+public abstract class MyInstanceLoggingClassTestBase extends TestCase {
 
-    private static final String LOGGING_CLASS_NAME = "com.ocarlsen.test.example.log4j.MyStaticLoggingClass";
-    private static final String LOGGER_FIELD_NAME = "LOGGER";
+    private static final String LOGGING_CLASS_NAME = "com.ocarlsen.test.example.log4j.MyInstanceLoggingClass";
+    public static final String LOGGER_FIELD_NAME = "logger";
 
     public void testLoggingMethod() throws Exception {
 
@@ -20,7 +20,7 @@ public abstract class MyStaticLoggingClassTestBase extends TestCase {
         prepareBeforeInstance(logger, LOGGING_CLASS_NAME, LOGGER_FIELD_NAME);
 
         // Given
-        MyStaticLoggingClass testInstance = new MyStaticLoggingClass();
+        final MyInstanceLoggingClass testInstance = new MyInstanceLoggingClass();
         prepareAfterInstance(logger, testInstance, LOGGER_FIELD_NAME);
 
         // When
@@ -41,7 +41,7 @@ public abstract class MyStaticLoggingClassTestBase extends TestCase {
         prepareBeforeInstance(logger, LOGGING_CLASS_NAME, LOGGER_FIELD_NAME);
 
         // Given
-        MyStaticLoggingClass testInstance = new MyStaticLoggingClass();
+        final MyInstanceLoggingClass testInstance = new MyInstanceLoggingClass();
         final Exception ex = new Exception("fake it");
         prepareAfterInstance(logger, testInstance, LOGGER_FIELD_NAME);
 
