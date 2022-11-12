@@ -16,6 +16,7 @@ import static org.mockito.Mockito.mock;
 
 /**
  * Example unit test for {@link com.ocarlsen.test.example.log4j.MyLoggingClass} with JUnit 3.
+ * It uses reflection to mock out the {@link Logger}.
  */
 public class MyLoggingClassTest extends TestCase {
 
