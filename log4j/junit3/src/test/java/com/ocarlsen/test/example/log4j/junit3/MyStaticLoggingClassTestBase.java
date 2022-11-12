@@ -10,10 +10,12 @@ import static org.mockito.Mockito.verifyNoMoreInteractions;
 
 public abstract class MyStaticLoggingClassTestBase extends TestCase {
 
+    public static final String LOGGER_FIELD_NAME = "LOGGER";
+
     public void testLoggingMethod() throws Exception {
 
         // Prepare mocks
-        final Logger logger = prepareLogger();
+        final Logger logger = prepareLogger(LOGGER_FIELD_NAME);
 
         // Given
         MyStaticLoggingClass testInstance = new MyStaticLoggingClass();
@@ -32,7 +34,7 @@ public abstract class MyStaticLoggingClassTestBase extends TestCase {
     public void testLoggingMethodWithException() throws Exception {
 
         // Prepare mocks
-        final Logger logger = prepareLogger();
+        final Logger logger = prepareLogger(LOGGER_FIELD_NAME);
 
         // Given
         MyStaticLoggingClass testInstance = new MyStaticLoggingClass();
@@ -69,5 +71,5 @@ public abstract class MyStaticLoggingClassTestBase extends TestCase {
         inOrder.verifyNoMoreInteractions();
     }
 
-    protected abstract Logger prepareLogger() throws Exception;
+    protected abstract Logger prepareLogger(final String loggerFieldName) throws Exception;
 }

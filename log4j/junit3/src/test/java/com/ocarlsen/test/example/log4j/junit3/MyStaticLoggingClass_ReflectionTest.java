@@ -18,11 +18,11 @@ public class MyStaticLoggingClass_ReflectionTest extends MyStaticLoggingClassTes
 
     @SuppressWarnings("ConstantConditions")
     @Override
-    protected Logger prepareLogger() throws Exception {
+    protected Logger prepareLogger(final String loggerFieldName) throws Exception {
 
         // Field is static
         Class<MyStaticLoggingClass> clazz = MyStaticLoggingClass.class;
-        final Field loggerField = clazz.getDeclaredField("LOGGER");
+        final Field loggerField = clazz.getDeclaredField(loggerFieldName);
 
         // Field is private
         loggerField.setAccessible(true);
@@ -43,7 +43,7 @@ public class MyStaticLoggingClass_ReflectionTest extends MyStaticLoggingClassTes
 
         // Set mock logger on field
         final Logger logger = mock(Logger.class);
-        loggerField.set(logger, logger);
+        loggerField.set(null, logger);
 
         return logger;
     }

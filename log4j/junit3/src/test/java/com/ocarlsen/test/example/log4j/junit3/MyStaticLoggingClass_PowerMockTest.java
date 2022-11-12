@@ -71,7 +71,7 @@ public class MyStaticLoggingClass_PowerMockTest extends MyStaticLoggingClassTest
     }
 
     @Override
-    protected Logger prepareLogger() {
+    protected Logger prepareLogger(final String loggerFieldName) {
         if (logger == null) {
             logger = mock(Logger.class);
 
