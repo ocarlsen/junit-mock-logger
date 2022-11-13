@@ -19,6 +19,7 @@
         <module>source</module>
         <module>junit3</module>
         <module>junit40_43</module>
+        <module>junit44_</module>
     </modules>
 
 </project>
