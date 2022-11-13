@@ -1,12 +1,12 @@
-package com.ocarlsen.test.example.log4j.junit3;
+package com.ocarlsen.test.example.log4j.junit4;
 
 import com.ocarlsen.test.example.log4j.MyStaticLoggingClass;
-import junit.framework.TestSuite;
 import org.apache.log4j.Logger;
+import org.junit.runner.RunWith;
 import org.mockito.internal.verification.NoMoreInteractions;
 import org.powermock.core.classloader.annotations.PowerMockIgnore;
 import org.powermock.core.classloader.annotations.PrepareForTest;
-import org.powermock.modules.junit3.PowerMockSuite;
+import org.powermock.modules.junit4.legacy.PowerMockRunner;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.reset;
@@ -16,11 +16,13 @@ import static org.powermock.api.mockito.PowerMockito.mockStatic;
 import static org.powermock.api.mockito.PowerMockito.verifyStatic;
 
 /**
- * Example unit test for {@link MyStaticLoggingClass} with JUnit 3.
- * It uses PowerMock 1.x to mock out the {@link Logger}.
+ * Example unit test for {@link MyStaticLoggingClass} with JUnit 4.
+ * It uses PowerMock 2.x to mock out the {@link Logger}.
  */
 @PrepareForTest(Logger.class)
 @PowerMockIgnore({"jdk.internal.*"})
+@RunWith(PowerMockRunner.class)
+@SuppressWarnings("NewClassNamingConvention")
 public class MyStaticLoggingClass_PowerMockTest extends MyStaticLoggingClassTestBase {
 
     /**
@@ -30,15 +32,6 @@ public class MyStaticLoggingClass_PowerMockTest extends MyStaticLoggingClassTest
     @SuppressWarnings("JavadocReference")
     private static Logger logger;
     private static boolean verifiedStatic = false;
-
-    /**
-     * Use this {@link TestSuite} to run with PowerMock in JUnit 3.
-     */
-    @SuppressWarnings({"deprecation", "unchecked"})
-    public static TestSuite suite() throws Exception {
-        final Class<MyStaticLoggingClass_PowerMockTest> testCases = MyStaticLoggingClass_PowerMockTest.class;
-        return new PowerMockSuite("Unit tests for " + MyStaticLoggingClass.class.getSimpleName(), testCases);
-    }
 
     @Override
     protected Logger getMockLogger() {

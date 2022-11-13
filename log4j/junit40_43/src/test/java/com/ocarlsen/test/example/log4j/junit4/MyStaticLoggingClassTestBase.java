@@ -1,4 +1,4 @@
-package com.ocarlsen.test.example.log4j.junit3;
+package com.ocarlsen.test.example.log4j.junit4;
 
 import com.ocarlsen.test.example.log4j.MyStaticLoggingClass;
 
