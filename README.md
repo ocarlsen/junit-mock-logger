@@ -1,4 +1,4 @@
-# mock-logger-example
+# mock-logger-examples
 
 Examples of testing different Loggers, with various permutations of frameworks.
 
