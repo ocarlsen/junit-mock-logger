@@ -1,7 +1,7 @@
-package com.ocarlsen.test.example.log4j.junit4;
+package com.ocarlsen.test.example.log4j2.junit4;
 
-import com.ocarlsen.test.example.log4j.LoggingClass;
-import org.apache.log4j.Logger;
+import com.ocarlsen.test.example.log4j2.LoggingClass;
+import org.apache.logging.log4j.Logger;
 import org.junit.Test;
 import org.mockito.InOrder;
 

@@ -10,7 +10,7 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>mock-logger-log4j</artifactId>
+    <artifactId>mock-logger-log4j2</artifactId>
     <packaging>pom</packaging>
 
     <name>mock-logger-log4j</name>

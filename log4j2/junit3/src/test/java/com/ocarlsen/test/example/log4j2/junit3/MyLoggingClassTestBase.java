@@ -1,17 +1,16 @@
-package com.ocarlsen.test.example.log4j.junit4;
+package com.ocarlsen.test.example.log4j2.junit3;
 
-import com.ocarlsen.test.example.log4j.LoggingClass;
-import org.apache.log4j.Logger;
-import org.junit.Test;
+import com.ocarlsen.test.example.log4j2.LoggingClass;
+import junit.framework.TestCase;
+import org.apache.logging.log4j.Logger;
 import org.mockito.InOrder;
 
 import static org.mockito.Mockito.inOrder;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 
-public abstract class MyLoggingClassTestBase<T extends LoggingClass> {
+public abstract class MyLoggingClassTestBase<T extends LoggingClass> extends TestCase {
 
-    @Test
-    public void loggingMethod() throws Exception {
+    public void testLoggingMethod() throws Exception {
 
         // Prepare mocks
         final Logger logger = getMockLogger();
@@ -32,8 +31,7 @@ public abstract class MyLoggingClassTestBase<T extends LoggingClass> {
         verifyNoMoreInteractions(logger);
     }
 
-    @Test
-    public void loggingMethodWithException() throws Exception {
+    public void testLoggingMethodWithException() throws Exception {
 
         // Prepare mocks
         final Logger logger = getMockLogger();
