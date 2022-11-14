@@ -10,6 +10,7 @@ public class MyStaticLoggingClass extends AbstractLoggingClass {
 
     public static void main(String[] args) {
         new MyStaticLoggingClass().loggingMethod();
+        new MyStaticLoggingClass().loggingMethodWithException(new RuntimeException("yay"));
     }
 
     private static final Logger LOGGER = Logger.getLogger(MyStaticLoggingClass.class);

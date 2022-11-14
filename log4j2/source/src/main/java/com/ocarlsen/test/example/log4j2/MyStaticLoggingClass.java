@@ -11,6 +11,7 @@ public class MyStaticLoggingClass implements LoggingClass {
 
     public static void main(String[] args) {
         new MyStaticLoggingClass().loggingMethod();
+        new MyStaticLoggingClass().loggingMethodWithException(new RuntimeException("yay"));
     }
 
     private static final Logger LOGGER = LogManager.getLogger(MyStaticLoggingClass.class);
