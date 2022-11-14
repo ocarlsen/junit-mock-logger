@@ -14,11 +14,11 @@ public abstract class MyLoggingClassTestBase<T extends LoggingClass> extends Tes
 
         // Prepare mocks
         final Logger logger = getMockLogger();
-        prepareBeforeInstance(logger, getLoggingClassName(), getLoggerFieldName());
+        prepareClass(logger, getLoggingClassName(), getLoggerFieldName());
 
         // Given
         final T testInstance = newLoggingInstance();
-        prepareAfterInstance(logger, testInstance, getLoggerFieldName());
+        prepareInstance(logger, testInstance, getLoggerFieldName());
 
         // When
         testInstance.loggingMethod();
@@ -35,12 +35,12 @@ public abstract class MyLoggingClassTestBase<T extends LoggingClass> extends Tes
 
         // Prepare mocks
         final Logger logger = getMockLogger();
-        prepareBeforeInstance(logger, getLoggingClassName(), getLoggerFieldName());
+        prepareClass(logger, getLoggingClassName(), getLoggerFieldName());
 
         // Given
         final T testInstance = newLoggingInstance();
         final Exception ex = new Exception("fake it");
-        prepareAfterInstance(logger, testInstance, getLoggerFieldName());
+        prepareInstance(logger, testInstance, getLoggerFieldName());
 
         // When
         testInstance.loggingMethodWithException(ex);
@@ -82,12 +82,12 @@ public abstract class MyLoggingClassTestBase<T extends LoggingClass> extends Tes
     }
 
     @SuppressWarnings("SameParameterValue")
-    protected abstract void prepareAfterInstance(final Logger logger,
-                                                 final Object testInstance,   // Need to provide as Object so it does not get loaded before we can mock it.
-                                                 final String loggerFieldName) throws Exception;
+    protected abstract void prepareInstance(final Logger logger,
+                                            final Object testInstance,   // Need to provide as Object so it does not get loaded before we can mock it.
+                                            final String loggerFieldName) throws Exception;
 
     @SuppressWarnings("SameParameterValue")
-    protected abstract void prepareBeforeInstance(final Logger mockLogger,
-                                                  final String loggingClassName,  // Need to provide as String so it does not get loaded before we can mock it.
-                                                  final String loggerFieldName) throws Exception;
+    protected abstract void prepareClass(final Logger mockLogger,
+                                         final String loggingClassName,  // Need to provide as String so it does not get loaded before we can mock it.
+                                         final String loggerFieldName) throws Exception;
 }

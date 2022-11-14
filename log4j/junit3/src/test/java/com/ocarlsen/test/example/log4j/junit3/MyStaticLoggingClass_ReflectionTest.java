@@ -22,17 +22,17 @@ public class MyStaticLoggingClass_ReflectionTest extends MyStaticLoggingClassTes
     }
 
     @Override
-    protected void prepareAfterInstance(final Logger logger,
-                                        final Object testInstance,
-                                        final String loggerFieldName) {
+    protected void prepareInstance(final Logger logger,
+                                   final Object testInstance,
+                                   final String loggerFieldName) {
         // No-op because logger field is Class scope.
     }
 
     @SuppressWarnings("ConstantConditions")
     @Override
-    protected void prepareBeforeInstance(final Logger logger,
-                                         final String loggingClassName,  // Need to provide as String so it does not get loaded before we can mock it.
-                                         final String loggerFieldName) throws Exception {
+    protected void prepareClass(final Logger logger,
+                                final String loggingClassName,  // Need to provide as String so it does not get loaded before we can mock it.
+                                final String loggerFieldName) throws Exception {
 
         Class<?> clazz = getClass().getClassLoader().loadClass(loggingClassName);
         final Field loggerField = clazz.getDeclaredField(loggerFieldName);
