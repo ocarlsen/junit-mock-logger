@@ -56,14 +56,14 @@ public class MyInstanceLoggingClass_PowerMockTest extends MyInstanceLoggingClass
     }
 
     @Override
-    protected void prepareAfterInstance(final Logger logger,
+    protected void prepareInstance(final Logger logger,
                                         final Object testInstance,
                                         final String loggerFieldName) {
         // No-op because logger factory is mocked.
     }
 
     @Override
-    protected void prepareBeforeInstance(final Logger logger,
+    protected void prepareClass(final Logger logger,
                                          final String loggingClassName,  // Need to provide as String so it does not get loaded before we can mock it.
                                          final String loggerFieldName) throws Exception {
         mockStatic(LogManager.class);

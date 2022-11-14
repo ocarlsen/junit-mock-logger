@@ -4,16 +4,16 @@
 
 ### Junit 3
 
-There are a few flavors of logging tested
+There are a few styles of logging tested
 
 * Static Logger
 * Instance Logger
 
 PowerMock and Mockito versions.
-See [here](https://github.com/powermock/powermock/wiki/Mockito#supported-versions)
+[Supported Versions](https://github.com/powermock/powermock/wiki/Mockito#supported-versions)
 
 * PowerMock 1.x
 * Mockito 1.x
 
 No higher versions of PowerMock are supported for Junit 3.
-See [here](https://github.com/powermock/powermock/wiki/Mockito-Maven#junit-3-deprecated)
+[Maven](https://github.com/powermock/powermock/wiki/Mockito-Maven#junit-3-deprecated)

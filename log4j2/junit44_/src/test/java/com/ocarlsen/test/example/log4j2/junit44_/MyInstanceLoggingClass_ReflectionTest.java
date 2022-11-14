@@ -23,7 +23,7 @@ public class MyInstanceLoggingClass_ReflectionTest extends MyInstanceLoggingClas
 
     @SuppressWarnings("ConstantConditions")
     @Override
-    protected void prepareAfterInstance(final Logger logger,
+    protected void prepareInstance(final Logger logger,
                                         final Object loggingInstance,   // Need to provide as Object so it does not get loaded before we can mock it.
                                         final String loggingFieldName) throws Exception {
 
@@ -52,7 +52,7 @@ public class MyInstanceLoggingClass_ReflectionTest extends MyInstanceLoggingClas
     }
 
     @Override
-    protected void prepareBeforeInstance(final Logger logger,
+    protected void prepareClass(final Logger logger,
                                          final String loggingClassName,  // Need to provide as String so it does not get loaded before we can mock it.
                                          final String loggerFieldName) {
         // No-op because logger field is Instance scope.
