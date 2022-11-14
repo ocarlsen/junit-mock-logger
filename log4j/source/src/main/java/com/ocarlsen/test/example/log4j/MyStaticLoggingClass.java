@@ -16,7 +16,6 @@ public class MyStaticLoggingClass extends AbstractLoggingClass {
     /**
      * <p>This method tests a few {@link Logger} methods.</p>
      */
-    @SuppressWarnings("RedundantThrows")
     public void loggingMethod() {
         LOGGER.trace("this is a trace message");
         LOGGER.debug("this is a debug message");

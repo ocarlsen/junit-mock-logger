@@ -18,7 +18,6 @@ public class MyInstanceLoggingClass extends AbstractLoggingClass {
     /**
      * <p>This method tests a few {@link Logger} methods.</p>
      */
-    @SuppressWarnings("RedundantThrows")
     public void loggingMethod() {
         logger.trace("this is a trace message");
         logger.debug("this is a debug message");
