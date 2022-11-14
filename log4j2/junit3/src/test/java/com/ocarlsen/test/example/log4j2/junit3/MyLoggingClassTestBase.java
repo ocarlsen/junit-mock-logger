@@ -83,11 +83,11 @@ public abstract class MyLoggingClassTestBase<T extends LoggingClass> extends Tes
 
     @SuppressWarnings("SameParameterValue")
     protected abstract void prepareInstance(final Logger logger,
-                                                 final Object testInstance,   // Need to provide as Object so it does not get loaded before we can mock it.
-                                                 final String loggerFieldName) throws Exception;
+                                            final Object testInstance,   // Need to provide as Object so it does not get loaded before we can mock it.
+                                            final String loggerFieldName) throws Exception;
 
     @SuppressWarnings("SameParameterValue")
     protected abstract void prepareClass(final Logger mockLogger,
-                                                  final String loggingClassName,  // Need to provide as String so it does not get loaded before we can mock it.
-                                                  final String loggerFieldName) throws Exception;
+                                         final String loggingClassName,  // Need to provide as String so it does not get loaded before we can mock it.
+                                         final String loggerFieldName) throws Exception;
 }
