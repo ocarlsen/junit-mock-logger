@@ -1,4 +1,4 @@
-package com.ocarlsen.test.example.log4j;
+package com.ocarlsen.test.example.source;
 
 public interface LoggingClass {
 

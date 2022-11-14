@@ -6,7 +6,7 @@
 
     <parent>
         <groupId>com.ocarlsen.test.example</groupId>
-        <artifactId>mock-logger-log4j2</artifactId>
+        <artifactId>mock-logger-examples</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
 
@@ -20,6 +20,11 @@
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>com.ocarlsen.test.example</groupId>
+            <artifactId>mock-logger-source</artifactId>
+            <version>${project.version}</version>
+        </dependency>
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-core</artifactId>

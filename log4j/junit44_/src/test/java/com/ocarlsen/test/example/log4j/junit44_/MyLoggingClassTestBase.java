@@ -1,6 +1,6 @@
 package com.ocarlsen.test.example.log4j.junit44_;
 
-import com.ocarlsen.test.example.log4j.LoggingClass;
+import com.ocarlsen.test.example.source.LoggingClass;
 import org.apache.log4j.Logger;
 import org.junit.Test;
 import org.mockito.InOrder;
@@ -85,11 +85,11 @@ public abstract class MyLoggingClassTestBase<T extends LoggingClass> {
 
     @SuppressWarnings("SameParameterValue")
     protected abstract void prepareInstance(final Logger logger,
-                                                 final Object testInstance,   // Need to provide as Object so it does not get loaded before we can mock it.
-                                                 final String loggerFieldName) throws Exception;
+                                            final Object testInstance,   // Need to provide as Object so it does not get loaded before we can mock it.
+                                            final String loggerFieldName) throws Exception;
 
     @SuppressWarnings("SameParameterValue")
     protected abstract void prepareClass(final Logger mockLogger,
-                                                  final String loggingClassName,  // Need to provide as String so it does not get loaded before we can mock it.
-                                                  final String loggerFieldName) throws Exception;
+                                         final String loggingClassName,  // Need to provide as String so it does not get loaded before we can mock it.
+                                         final String loggerFieldName) throws Exception;
 }

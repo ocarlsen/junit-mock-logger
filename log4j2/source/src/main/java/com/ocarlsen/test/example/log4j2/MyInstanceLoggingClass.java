@@ -1,12 +1,13 @@
 package com.ocarlsen.test.example.log4j2;
 
+import com.ocarlsen.test.example.source.LoggingClass;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 /**
  * A class that uses a private final {@link Logger}.
  */
-public class MyInstanceLoggingClass extends AbstractLoggingClass {
+public class MyInstanceLoggingClass implements LoggingClass {
 
     public static void main(String[] args) {
         new MyInstanceLoggingClass().loggingMethod();

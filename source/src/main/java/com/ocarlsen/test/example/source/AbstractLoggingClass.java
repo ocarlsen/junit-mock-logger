@@ -1,4 +1,4 @@
-package com.ocarlsen.test.example.log4j2;
+package com.ocarlsen.test.example.source;
 
 public abstract class AbstractLoggingClass implements LoggingClass {
 }

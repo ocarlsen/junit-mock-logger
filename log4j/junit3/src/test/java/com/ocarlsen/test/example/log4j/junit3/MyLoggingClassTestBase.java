@@ -1,6 +1,6 @@
 package com.ocarlsen.test.example.log4j.junit3;
 
-import com.ocarlsen.test.example.log4j.LoggingClass;
+import com.ocarlsen.test.example.source.LoggingClass;
 import junit.framework.TestCase;
 import org.apache.log4j.Logger;
 import org.mockito.InOrder;

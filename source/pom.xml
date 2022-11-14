@@ -10,16 +10,9 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>mock-logger-log4j2</artifactId>
-    <packaging>pom</packaging>
+    <artifactId>mock-logger-source</artifactId>
+    <packaging>jar</packaging>
 
-    <name>mock-logger-log4j</name>
-
-    <modules>
-        <module>source</module>
-        <module>junit3</module>
-        <module>junit40_43</module>
-        <module>junit44_</module>
-    </modules>
+    <name>mock-logger-source</name>
 
 </project>

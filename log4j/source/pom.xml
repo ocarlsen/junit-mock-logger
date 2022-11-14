@@ -21,6 +21,11 @@
 
     <dependencies>
         <dependency>
+            <groupId>com.ocarlsen.test.example</groupId>
+            <artifactId>mock-logger-source</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
             <groupId>log4j</groupId>
             <artifactId>log4j</artifactId>
             <version>${log4j.version}</version>

@@ -1,5 +1,6 @@
 package com.ocarlsen.test.example.log4j;
 
+import com.ocarlsen.test.example.source.AbstractLoggingClass;
 import org.apache.log4j.Logger;
 
 /**
