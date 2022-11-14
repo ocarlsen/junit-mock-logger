@@ -26,6 +26,9 @@ public class MyInstanceLoggingClass extends AbstractLoggingClass {
         logger.error("this is an error message");
     }
 
+    /**
+     * <p>This method tests a few {@link Logger} methods with an Exception argument.</p>
+     */
     public void loggingMethodWithException(Exception ex) {
         logger.trace("this is a trace message", ex);
         logger.debug("this is a debug message", ex);

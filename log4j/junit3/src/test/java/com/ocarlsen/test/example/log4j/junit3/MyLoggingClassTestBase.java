@@ -31,6 +31,9 @@ public abstract class MyLoggingClassTestBase<T extends LoggingClass> extends Tes
         verifyNoMoreInteractions(logger);
     }
 
+    /**
+     * <p>This method tests a few {@link Logger} methods with an Exception argument.</p>
+     */
     public void testLoggingMethodWithException() throws Exception {
 
         // Prepare mocks
