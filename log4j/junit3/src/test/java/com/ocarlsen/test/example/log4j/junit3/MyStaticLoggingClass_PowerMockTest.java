@@ -104,6 +104,6 @@ public class MyStaticLoggingClass_PowerMockTest extends MyStaticLoggingClassTest
         Logger.getLogger(MyStaticLoggingClass.class);
 
         verifyStatic(Logger.class, new NoMoreInteractions());
-        Logger.getLogger(Class.class);
+        Logger.getLogger(MyStaticLoggingClass.class);
     }
 }

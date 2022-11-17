@@ -73,6 +73,6 @@ public class MyInstanceLoggingClass_PowerMockTest extends MyInstanceLoggingClass
         LogManager.getLogger(MyInstanceLoggingClass.class);
 
         verifyStatic(LogManager.class, new NoMoreInteractions());
-        LogManager.getLogger(Class.class);
+        LogManager.getLogger(MyInstanceLoggingClass.class);
     }
 }
