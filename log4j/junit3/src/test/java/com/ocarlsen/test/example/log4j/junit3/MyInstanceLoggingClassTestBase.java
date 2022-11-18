@@ -5,7 +5,7 @@ import com.ocarlsen.test.example.log4j.MyInstanceLoggingClass;
 public abstract class MyInstanceLoggingClassTestBase extends MyLoggingClassTestBase<MyInstanceLoggingClass> {
 
     private static final String LOGGING_CLASS_NAME = "com.ocarlsen.test.example.log4j.MyInstanceLoggingClass";
-    public static final String LOGGER_FIELD_NAME = "logger";
+    private static final String LOGGER_FIELD_NAME = "logger";
 
     @Override
     protected String getLoggingClassName() {

@@ -3,6 +3,9 @@ package com.ocarlsen.test.example.log4j2.junit44_;
 import com.ocarlsen.test.example.log4j2.MyStaticLoggingClass;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
 import org.junit.runner.RunWith;
 import org.mockito.internal.verification.NoMoreInteractions;
 import org.powermock.core.classloader.annotations.PowerMockIgnore;
@@ -34,43 +37,36 @@ public class MyStaticLoggingClass_PowerMockTest extends MyStaticLoggingClassTest
     private static Logger logger;
     private static boolean verifiedStatic = false;
 
+    @BeforeClass
+    public static void setupStatic() throws ClassNotFoundException {
+        logger = mock(Logger.class);
+
+        mockStatic(LogManager.class);
+
+        final Class<?> clazz = MyStaticLoggingClass_PowerMockTest.class.getClassLoader().loadClass(LOGGING_CLASS_NAME);
+        when(LogManager.getLogger(clazz)).thenReturn(logger);
+    }
+
+    /**
+     * Although it seems like {@link AfterClass} should work here, it does not.
+     * A {@link org.mockito.exceptions.misusing.UnfinishedVerificationException} is thrown.
+     */
+    @After
+    public void teardownStatic() {
+
+        // Only happens once, when class is loaded.
+        if (!verifiedStatic) {
+            verifiedStatic = true;
+
+            verifyStaticInteractions();
+        }
+    }
+
     @Override
     protected Logger getMockLogger() {
-        if (logger == null) {
-            logger = mock(Logger.class);
-        } else {
-            reset(logger);
-        }
+        reset(logger);
 
         return logger;
-    }
-
-    @Override
-    protected void verifyLogger(final Logger logger) {
-
-        // Usual steps.
-        super.verifyLogger(logger);
-
-        // Only happens once, when class is loaded.
-        if (!verifiedStatic) {
-            verifiedStatic = true;
-
-            verifyStaticInteractions();
-        }
-    }
-
-    @Override
-    protected void verifyLogger(final Logger logger, final Exception ex) {
-
-        // Usual steps.
-        super.verifyLogger(logger, ex);
-
-        // Only happens once, when class is loaded.
-        if (!verifiedStatic) {
-            verifiedStatic = true;
-
-            verifyStaticInteractions();
-        }
     }
 
     @Override
@@ -83,14 +79,11 @@ public class MyStaticLoggingClass_PowerMockTest extends MyStaticLoggingClassTest
     @Override
     protected void prepareClass(final Logger logger,
                                 final String loggingClassName,  // Need to provide as String so it does not get loaded before we can mock it.
-                                final String loggerFieldName) throws Exception {
-        mockStatic(LogManager.class);
-
-        final Class<?> clazz = getClass().getClassLoader().loadClass(loggingClassName);
-        when(LogManager.getLogger(clazz)).thenReturn(logger);
+                                final String loggerFieldName) {
+        // No-op because @BeforeClass method handles.
     }
 
-    private void verifyStaticInteractions() {
+    private static void verifyStaticInteractions() {
 
         // Also verify static mocking.
         // https://github.com/powermock/powermock/wiki/Mockito#how-to-verify-behavior

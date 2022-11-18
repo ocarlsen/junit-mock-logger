@@ -29,7 +29,7 @@ public class MyInstanceLoggingClass_PowerMockTest extends MyInstanceLoggingClass
     @SuppressWarnings({"deprecation", "unchecked"})
     public static TestSuite suite() throws Exception {
         final Class<MyInstanceLoggingClass_PowerMockTest> testCases = MyInstanceLoggingClass_PowerMockTest.class;
-        return new PowerMockSuite("Unit tests for " + MyInstanceLoggingClass.class.getSimpleName(), testCases);
+        return new PowerMockSuite("Unit tests for MyInstanceLoggingClass", testCases);
     }
 
     @Override

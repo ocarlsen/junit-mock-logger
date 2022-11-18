@@ -13,7 +13,7 @@
     <artifactId>mock-logger-log4j2</artifactId>
     <packaging>pom</packaging>
 
-    <name>mock-logger-log4j</name>
+    <name>mock-logger-log4j2</name>
 
     <modules>
         <module>source</module>

@@ -6,7 +6,7 @@
 
     <parent>
         <groupId>com.ocarlsen.test.example</groupId>
-        <artifactId>mock-logger-examples</artifactId>
+        <artifactId>mock-logger-log4j2</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
 
