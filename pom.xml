@@ -11,8 +11,7 @@
 
     <name>mock-logger-examples</name>
 
-    <!-- TODO: change it to the project's website -->
-    <url>http://www.example.com</url>
+    <url>https://github.com/ocarlsen/mock-logger-examples</url>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -72,7 +71,7 @@
         <module>log4j</module>
         <module>log4j2</module>
         <!-- TODO: JUL -->
-        <!-- TODO: etc -->
+        <!-- TODO: Apache Commons Logging -->
     </modules>
 
 </project>

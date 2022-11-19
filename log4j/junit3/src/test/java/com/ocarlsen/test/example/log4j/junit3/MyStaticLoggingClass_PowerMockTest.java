@@ -17,7 +17,7 @@ import static org.powermock.api.mockito.PowerMockito.verifyStatic;
 
 /**
  * Example unit test for {@link MyStaticLoggingClass} with JUnit 3.
- * It uses PowerMock to mock out the {@link Logger}.
+ * It uses a {@link PowerMockSuite} to mock out the {@link Logger}.
  */
 @PrepareForTest(Logger.class)
 @PowerMockIgnore({"jdk.internal.*"})

@@ -12,7 +12,7 @@
 
     <artifactId>mock-logger-log4j2-junit44_</artifactId>
 
-    <name>mock-logger-log42j-junit44_</name>
+    <name>mock-logger-log4j2-junit44_</name>
 
     <properties>
         <junit.version>4.13</junit.version>
@@ -55,13 +55,6 @@
             <artifactId>powermock-api-mockito2</artifactId>
             <version>${powermock.version}</version>
             <scope>test</scope>
-        </dependency>
-
-        <!-- Required for PowerMock 1.x on Java 11 --><!-- TODO: Update? -->
-        <dependency>
-            <groupId>org.javassist</groupId>
-            <artifactId>javassist</artifactId>
-            <version>3.24.1-GA</version>
         </dependency>
 
     </dependencies>

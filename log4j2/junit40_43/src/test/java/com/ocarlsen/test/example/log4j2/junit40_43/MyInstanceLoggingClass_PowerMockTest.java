@@ -5,6 +5,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.runner.RunWith;
 import org.mockito.internal.verification.NoMoreInteractions;
+import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PowerMockIgnore;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.legacy.PowerMockRunner;
@@ -12,12 +13,11 @@ import org.powermock.modules.junit4.legacy.PowerMockRunner;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.when;
-import static org.powermock.api.mockito.PowerMockito.mockStatic;
 import static org.powermock.api.mockito.PowerMockito.verifyStatic;
 
 /**
  * Example unit test for {@link MyInstanceLoggingClass} with JUnit 4.
- * It uses PowerMock to mock out the {@link Logger}.
+ * It uses {@link PowerMockito#mockStatic(Class, Class[])} to mock out the {@link Logger}.
  */
 @PrepareForTest(LogManager.class)
 @PowerMockIgnore({"jdk.internal.*"})
@@ -59,7 +59,7 @@ public class MyInstanceLoggingClass_PowerMockTest extends MyInstanceLoggingClass
     protected void prepareClass(final Logger logger,
                                 final String loggingClassName,  // Need to provide as String so it does not get loaded before we can mock it.
                                 final String loggerFieldName) throws Exception {
-        mockStatic(LogManager.class);
+        PowerMockito.mockStatic(LogManager.class);
 
         final Class<?> clazz = getClass().getClassLoader().loadClass(loggingClassName);
         when(LogManager.getLogger(clazz)).thenReturn(logger);

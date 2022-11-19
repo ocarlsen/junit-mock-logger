@@ -1,6 +1,6 @@
 # Mock Logger Example
 
-## Log4j
+## Log4j2
 
 ### Junit 4.0-4.3
 

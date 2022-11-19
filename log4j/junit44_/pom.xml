@@ -57,13 +57,6 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- Required for PowerMock 1.x on Java 11 --><!-- TODO: Update? -->
-        <dependency>
-            <groupId>org.javassist</groupId>
-            <artifactId>javassist</artifactId>
-            <version>3.24.1-GA</version>
-        </dependency>
-
     </dependencies>
 
 </project>
