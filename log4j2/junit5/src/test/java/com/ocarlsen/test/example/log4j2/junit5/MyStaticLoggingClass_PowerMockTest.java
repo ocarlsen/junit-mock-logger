@@ -4,7 +4,6 @@ import com.ocarlsen.test.example.log4j2.MyStaticLoggingClass;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.mockito.MockedStatic;
 import org.mockito.Mockito;
@@ -20,17 +19,10 @@ import static org.mockito.Mockito.reset;
 public class MyStaticLoggingClass_PowerMockTest extends MyStaticLoggingClassTestBase {
 
     private static MockedStatic<LogManager> logManagerMockedStatic;
-
-    /**
-     * These hacks are necessary because {@link MyStaticLoggingClass#LOGGER} is static.
-     * The {@link Logger#getLogger(Class)} method that we are mocking is only called once.
-     */
-    @SuppressWarnings("JavadocReference")
     private static Logger logger;
-    private static boolean verifiedStatic = false;
 
     @BeforeAll
-    public static void setupStatic() throws ClassNotFoundException {
+    public static void init() throws ClassNotFoundException {
         logger = mock(Logger.class);
 
         logManagerMockedStatic = Mockito.mockStatic(LogManager.class);
@@ -41,7 +33,10 @@ public class MyStaticLoggingClass_PowerMockTest extends MyStaticLoggingClassTest
 
     @AfterAll
     public static void cleanup() {
+
+        // Verify before closing.
         verifyStaticInteractions();
+
         logManagerMockedStatic.close();
     }
 

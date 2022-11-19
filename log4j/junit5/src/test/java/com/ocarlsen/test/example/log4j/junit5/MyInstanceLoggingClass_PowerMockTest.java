@@ -17,52 +17,44 @@ import static org.mockito.Mockito.mock;
 public class MyInstanceLoggingClass_PowerMockTest extends MyInstanceLoggingClassTestBase {
 
     private MockedStatic<Logger> logManagerMockedStatic;
+    private Logger logger;
 
     @BeforeEach
-    public void init() {
+    public void init() throws ClassNotFoundException {
+        logger = mock(Logger.class);
+
         logManagerMockedStatic = Mockito.mockStatic(Logger.class);
+
+        final Class<?> clazz = getClass().getClassLoader().loadClass(LOGGING_CLASS_NAME);
+        logManagerMockedStatic.when(() -> Logger.getLogger(clazz)).thenReturn(logger);
     }
 
     @AfterEach
     public void cleanup() {
+
+        // Verify before closing.
+        verifyStaticInteractions();
+
         logManagerMockedStatic.close();
     }
 
     @Override
     protected Logger getMockLogger() {
-        return mock(Logger.class);
+        return logger;
     }
 
     @Override
-    protected void verifyLogger(final Logger logger) {
-
-        // Usual steps.
-        super.verifyLogger(logger);
-
-        verifyStaticInteractions();
-    }
-
-    @Override
-    protected void verifyLogger(final Logger logger, final Exception ex) {
-
-        // Usual steps.
-        super.verifyLogger(logger, ex);
-
-        verifyStaticInteractions();
-    }
-
-    @Override
-    protected void prepareInstance(final Logger logger, final Object testInstance, final String loggerFieldName) {
+    protected void prepareInstance(final Logger logger,
+                                   final Object testInstance,
+                                   final String loggerFieldName) {
         // No-op because logger factory is mocked.
     }
 
     @Override
-    protected void prepareClass(final Logger logger, final String loggingClassName,  // Need to provide as String so it does not get loaded before we can mock it.
-                                final String loggerFieldName) throws Exception {
-
-        // TODO: Figure out how to do in init method.
-        final Class<?> clazz = getClass().getClassLoader().loadClass(loggingClassName);
-        logManagerMockedStatic.when(() -> Logger.getLogger(clazz)).thenReturn(logger);
+    protected void prepareClass(final Logger logger,
+                                final String loggingClassName,  // Need to provide as String so it does not get loaded before we can mock it.
+                                final String loggerFieldName) {
+        // No-op because @BeforeEach method handles.
     }
 
     private void verifyStaticInteractions() {

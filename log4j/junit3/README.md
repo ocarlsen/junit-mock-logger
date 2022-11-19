@@ -4,12 +4,12 @@
 
 ### Junit 3
 
-There are a few styles of logging tested
+#### There are a few styles of logging tested
 
 * Static Logger
 * Instance Logger
 
-PowerMock and Mockito versions.
+#### PowerMock and Mockito versions.
 [Supported Versions](https://github.com/powermock/powermock/wiki/Mockito#supported-versions)
 
 * PowerMock 1.x

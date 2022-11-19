@@ -38,7 +38,7 @@ public class MyStaticLoggingClass_PowerMockTest extends MyStaticLoggingClassTest
     private static boolean verifiedStatic = false;
 
     @BeforeClass
-    public static void setupStatic() throws ClassNotFoundException {
+    public static void init() throws ClassNotFoundException {
         logger = mock(Logger.class);
 
         mockStatic(LogManager.class);
@@ -52,7 +52,7 @@ public class MyStaticLoggingClass_PowerMockTest extends MyStaticLoggingClassTest
      * A {@link org.mockito.exceptions.misusing.UnfinishedVerificationException} is thrown.
      */
     @After
-    public void teardownStatic() {
+    public void cleanup() {
 
         // Only happens once, when class is loaded.
         if (!verifiedStatic) {

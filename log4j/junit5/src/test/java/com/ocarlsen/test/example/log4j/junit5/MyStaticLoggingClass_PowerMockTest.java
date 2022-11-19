@@ -3,7 +3,6 @@ package com.ocarlsen.test.example.log4j.junit5;
 import com.ocarlsen.test.example.log4j.MyStaticLoggingClass;
 import org.apache.log4j.Logger;
 import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.mockito.MockedStatic;
 import org.mockito.Mockito;
@@ -19,17 +18,10 @@ import static org.mockito.Mockito.reset;
 public class MyStaticLoggingClass_PowerMockTest extends MyStaticLoggingClassTestBase {
 
     private static MockedStatic<Logger> logManagerMockedStatic;
-
-    /**
-     * These hacks are necessary because {@link MyStaticLoggingClass#LOGGER} is static.
-     * The {@link Logger#getLogger(Class)} method that we are mocking is only called once.
-     */
-    @SuppressWarnings("JavadocReference")
     private static Logger logger;
-    private static boolean verifiedStatic = false;
 
     @BeforeAll
-    public static void setupStatic() throws ClassNotFoundException {
+    public static void init() throws ClassNotFoundException {
         logger = mock(Logger.class);
 
         logManagerMockedStatic = Mockito.mockStatic(Logger.class);
@@ -40,23 +32,11 @@ public class MyStaticLoggingClass_PowerMockTest extends MyStaticLoggingClassTest
 
     @AfterAll
     public static void cleanup() {
+
+        // Verify before closing.
+        verifyStaticInteractions();
+
         logManagerMockedStatic.close();
-    }
-
-    /**
-     * Although it seems like {@link org.junit.jupiter.api.AfterAll} should work here, it does not.
-     * A {@link org.mockito.exceptions.base.MockitoException} is thrown because
-     * the static mock "is already resolved and cannot longer be used".
-     */
-    @AfterEach
-    public void teardownStatic() {
-
-        // Only happens once, when class is loaded.
-        if (!verifiedStatic) {
-            verifiedStatic = true;
-
-            verifyStaticInteractions();
-        }
     }
 
     @Override

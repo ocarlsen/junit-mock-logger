@@ -21,21 +21,30 @@ public class MyInstanceLoggingClass_PowerMockTest extends MyInstanceLoggingClass
      * This mocks static, but must be kept in instance scope.
      */
     private MockedStatic<LogManager> logManagerMockedStatic;
+    private Logger logger;
 
     @BeforeEach
-    public void init() {
+    public void init() throws ClassNotFoundException {
+        logger = mock(Logger.class);
+
         logManagerMockedStatic = Mockito.mockStatic(LogManager.class);
+
+        final Class<?> clazz = getClass().getClassLoader().loadClass(LOGGING_CLASS_NAME);
+        logManagerMockedStatic.when(() -> LogManager.getLogger(clazz)).thenReturn(logger);
     }
 
     @AfterEach
     public void cleanup() {
+
+        // Verify before closing.
         verifyStaticInteractions();
+
         logManagerMockedStatic.close();
     }
 
     @Override
     protected Logger getMockLogger() {
-        return mock(Logger.class);
+        return logger;
     }
 
     @Override
@@ -48,11 +57,8 @@ public class MyInstanceLoggingClass_PowerMockTest extends MyInstanceLoggingClass
     @Override
     protected void prepareClass(final Logger logger,
                                 final String loggingClassName,  // Need to provide as String so it does not get loaded before we can mock it.
-                                final String loggerFieldName) throws Exception {
-
-        // TODO: Figure out how to do in init method.
-        final Class<?> clazz = getClass().getClassLoader().loadClass(loggingClassName);
-        logManagerMockedStatic.when(() -> LogManager.getLogger(clazz)).thenReturn(logger);
+                                final String loggerFieldName) {
+        // No-op because @BeforeEach method handles.
     }
 
     private void verifyStaticInteractions() {
