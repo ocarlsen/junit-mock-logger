@@ -15,7 +15,7 @@ import static org.mockito.Mockito.mock;
  * It uses {@link Mockito#mockStatic(Class)} to mock out the {@link Logger}.
  */
 @SuppressWarnings("NewClassNamingConvention")
-public class MyInstanceLoggingClass_PowerMockTest extends MyInstanceLoggingClassTestBase {
+public class MyInstanceLoggingClass_MockitoTest extends MyInstanceLoggingClassTestBase {
 
     /**
      * This mocks static, but must be kept in instance scope.

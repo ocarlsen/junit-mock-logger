@@ -16,7 +16,7 @@ import static org.mockito.Mockito.reset;
  * It uses {@link Mockito#mockStatic(Class)} to mock out the {@link Logger}.
  */
 @SuppressWarnings("NewClassNamingConvention")
-public class MyStaticLoggingClass_PowerMockTest extends MyStaticLoggingClassTestBase {
+public class MyStaticLoggingClass_MockitoTest extends MyStaticLoggingClassTestBase {
 
     private static MockedStatic<LogManager> logManagerMockedStatic;
     private static Logger logger;
@@ -27,7 +27,7 @@ public class MyStaticLoggingClass_PowerMockTest extends MyStaticLoggingClassTest
 
         logManagerMockedStatic = Mockito.mockStatic(LogManager.class);
 
-        final Class<?> clazz = MyStaticLoggingClass_PowerMockTest.class.getClassLoader().loadClass(LOGGING_CLASS_NAME);
+        final Class<?> clazz = MyStaticLoggingClass_MockitoTest.class.getClassLoader().loadClass(LOGGING_CLASS_NAME);
         logManagerMockedStatic.when(() -> LogManager.getLogger(clazz)).thenReturn(logger);
     }
 
